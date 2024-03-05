@@ -12,10 +12,30 @@ class DepartmentSeeder extends Seeder
      */
     public function run(): void
     {
-        Department::create(['name' => 'IT']);
-        Department::create(['name' => 'Sale']);
-        Department::create(['name' => 'Accounting']);
-        Department::create(['name' => 'Receptionist']);
-        Department::create(['name' => 'Secuiry Guard']);
+        Department::create([
+            'name' => 'Information Tecchnology',
+            'short' => 'IT',
+            'noted' => 'For develop a new Technology',
+        ]);
+        Department::create([
+            'name' => 'Sale',
+            'short' => 'S',
+            'noted' => 'For sale product of Company',
+        ]);
+        Department::create([
+            'name' => 'Accounting',
+            'short' => 'A',
+            'noted' => 'For calulate the income or expense',
+        ]);
+        Department::create([
+            'name' => 'Receptionist',
+            'short' => 'R',
+            'noted' => 'For get the guest',
+        ]);
+        Department::create([
+            'name' => 'Secuiry Guard',
+            'short' => 'SG',
+            'noted' => 'For protect security in Company',
+        ]);
     }
 }

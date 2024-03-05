@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('started');
             $table->date('ended');
-            $table->integer('user');
-            $table->integer('type');
-            $table->integer('department');
+            $table->integer('user_id');
+            $table->integer('leave_id');
             defaultAttribute($table);
         });
     }

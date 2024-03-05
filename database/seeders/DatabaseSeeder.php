@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             DepartmentSeeder::class,
             ModuleSeeder::class,
+            LeaveSeeder::class
         ]);
     }
 }

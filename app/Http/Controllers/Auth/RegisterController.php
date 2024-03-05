@@ -69,9 +69,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'gender' => $faker->numberBetween(1,2),
             'address' => $faker->address(),
-            'dob' => $faker->date('Y-m-d'),
             'phone' => $faker->phoneNumber(),
-            'photo' => 'avatar.png',
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

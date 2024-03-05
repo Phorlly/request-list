@@ -16,9 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->boolean('gender');
             $table->string('address')->nullable();
-            $table->date('dob')->nullable();
             $table->string('phone');
-            $table->string('photo')->nullable();
             $table->integer('role')->default(2);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

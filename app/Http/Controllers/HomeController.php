@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Department;
+use App\Models\RequestList;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users = User::count();
+        $departments = Department::count();
+        $requesters = RequestList::count();
+        $pending = RequestList::where('status', 1)->count();
+        $approved = RequestList::where('status', 2)->count();
+        $rejected = RequestList::where('status', 0)->count();
+
+        return view('home', compact('users', 'departments', 'requesters', 'pending', 'approved', 'rejected'));
     }
 }
