@@ -1,4 +1,4 @@
-let tables = [];
+let tables = []
 const modalDialog = $(".dialog-modal")
 const save = $(".save")
 const update = $(".update")
@@ -70,8 +70,8 @@ const reads = () => {
                 title: "From-department",
                 data: "user.departments",
                 render: departments => {
-                    let departmentNames = departments.map(department => department.name).join(', ');
-                    return departmentNames;
+                    let departmentNames = departments.map(department => department.name).join(', ')
+                    return departmentNames
                 },
             },
             {
@@ -131,12 +131,7 @@ save.on('click', () => {
         whenComplete: res => {
             tables.ajax.reload()
             clear()
-            Swal.fire({
-                title: res.message,
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            success(res.message)
             // modalDialog.modal('toggle') 
         }
     }) : false
@@ -150,12 +145,7 @@ update.on('click', () => {
         whenComplete: res => {
             tables.ajax.reload()
             clear()
-            Swal.fire({
-                title: res.message,
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            success(res.message)
             modalDialog.modal('toggle')
         }
     }) : false
@@ -174,22 +164,12 @@ const remove = (id) => {
             method: "DELETE",
             url: `request-lists/${id}`,
             whenComplete: res => {
-                tables.ajax.reload();
-                Swal.fire({
-                    title: res.message,
-                    icon: "success",
-                    showConfirmButton: false,
-                    timer: 1000
-                })
+                tables.ajax.reload()
+                success(res.message)
             }
         }) : param.dismiss === Swal.DismissReason.cancel &&
-        Swal.fire({
-            title: "The record is safty!",
-            icon: "warning",
-            showConfirmButton: false,
-            timer: 1000
-        });
-    }).catch((err) => console.log(err.message));
+        warning("The record is safty!")
+    }).catch((err) => console.log(err.message))
 }
 
 const clear = () => {
@@ -214,47 +194,27 @@ const check = () => {
     let isValid = true
 
     if (user.val() === "-1") {
-        Swal.fire({
-            title: 'Select the name',
-            icon: "warning",
-            showConfirmButton: false,
-            timer: 1000
-        })
+        warning('Select the name')
         user.css("border-color", "red")
         user.focus()
         isValid = false
     } else {
         user.css("border-color", "#cccccc")
         if (leave.val() === "-1") {
-            Swal.fire({
-                title: 'Select the mission base on',
-                icon: "warning",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            warning('Select the mission')
             leave.css("border-color", "red")
             department.focus()
             isValid = false
         } else {
             leave.css("border-color", "#cccccc")
             if (started.val() === "") {
-                Swal.fire({
-                    title: 'Select the from-date',
-                    icon: "warning",
-                    showConfirmButton: false,
-                    timer: 1000
-                })
+                warning('Select the from-date')
                 started.css("border-color", "red")
                 isValid = false
             } else {
                 started.css("border-color", "#cccccc")
                 if (ended.val() === "") {
-                    Swal.fire({
-                        title: 'Select the to-date',
-                        icon: "warning",
-                        showConfirmButton: false,
-                        timer: 1000
-                    })
+                    warning('Select the to-date')
                     ended.css("border-color", "red")
                     isValid = false
                 } else {

@@ -53,7 +53,7 @@ const reads = () => {
                 title: "Department",
                 data: "departments",
                 render: departments => {
-                    let departmentNames = departments.map(department => department.name).join(', ');
+                    let departmentNames = departments.map(item => item.name).join(', ');
                     return departmentNames;
                 },
             },
@@ -61,7 +61,7 @@ const reads = () => {
                 title: "Short Name",
                 data: "departments",
                 render: departments => {
-                    let shortNames = departments.map(department => department.short).join(', ');
+                    let shortNames = departments.map(item => item.short).join(', ');
                     return shortNames;
                 },
             },
@@ -93,7 +93,7 @@ const read = (id) => {
             save.hide()
             update.show()
             user.val(res.id)
-            let departmentIds = res.departments.map(department => department.id);
+            let departmentIds = res.departments.map(item => item.id);
             departments.val(departmentIds)
             modalDialog.modal('toggle')
         }
@@ -108,12 +108,7 @@ save.on('click', () => {
         whenComplete: res => {
             tables.ajax.reload()
             clear()
-            Swal.fire({
-                title: res.message,
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            success(res.message)
             // modalDialog.modal('toggle')
         }
     }) : false
@@ -127,12 +122,7 @@ update.on('click', () => {
         whenComplete: res => {
             tables.ajax.reload()
             clear()
-            Swal.fire({
-                title: res.message,
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            success(res.message)
             modalDialog.modal('toggle')
         }
     }) : false
@@ -152,20 +142,10 @@ const remove = (id) => {
             url: `users/${id}/departments`,
             whenComplete: res => {
                 tables.ajax.reload();
-                Swal.fire({
-                    title: res.message,
-                    icon: "success",
-                    showConfirmButton: false,
-                    timer: 1000
-                })
+                success(res.message)
             }
         }) : param.dismiss === Swal.DismissReason.cancel &&
-        Swal.fire({
-            title: "The record is safty!",
-            icon: "warning",
-            showConfirmButton: false,
-            timer: 1000
-        });
+        warning("The record is safty!")
     }).catch((err) => console.log(err.message));
 }
 
@@ -184,24 +164,14 @@ const color = () => {
 const check = () => {
     let isValid = true
     if (user.val() === "-1") {
-        Swal.fire({
-            title: 'Select the from user',
-            icon: "warning",
-            showConfirmButton: false,
-            timer: 1000
-        })
+        warning('Select the from user')
         user.css("border-color", "red")
         user.focus()
         isValid = false
     } else {
         user.css("border-color", "#cccccc")
         if (departments.val() === null || departments.val().length === 0) {
-            Swal.fire({
-                title: 'Select to departments',
-                icon: "warning",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            warning('Select to departments')
             departments.css("border-color", "red")
             departments.focus()
             isValid = false

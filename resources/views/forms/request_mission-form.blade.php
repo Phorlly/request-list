@@ -30,7 +30,7 @@
                                     <select name="leave_id" class="form-select leave_id">
                                         <option value="-1" class="text-danger">---Select the mission---</option>
                                         @foreach ($leaves as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            <option value="{{ $item->id }}">{{ $item->name }} ({{ $item->duration }})</option>
                                         @endforeach
                                     </select>
                                 </div>

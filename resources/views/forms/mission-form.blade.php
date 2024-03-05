@@ -18,7 +18,7 @@
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
                                     <label class="fw-normal" for="user_id">Name</label>
-                                    <select name="user_id" class="form-select user_id">
+                                    <select disabled name="user_id" class="form-select user_id">
                                         <option value="-1" class="text-danger">---Select the Name---</option>
                                         @foreach ($users as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -30,7 +30,7 @@
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="fw-normal" for="leave_id">Mission</label>
-                                    <select name="leave_id" class="form-select leave_id">
+                                    <select disabled name="leave_id" class="form-select leave_id">
                                         <option value="-1" class="text-danger">---Select the mission---</option>
                                         @foreach ($leaves as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -51,13 +51,13 @@
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="fw-normal" for="started">From-Date</label>
-                                    <input type="date" name="started" class="form-control started">
+                                    <input disabled type="date" name="started" class="form-control started">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="fw-normal" for="ended">To-Date</label>
-                                    <input type="date" name="ended" class="form-control ended">
+                                    <input disabled type="date" name="ended" class="form-control ended">
                                 </div>
                             </div>
 

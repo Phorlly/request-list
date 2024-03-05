@@ -1,4 +1,4 @@
-let tables = [];
+let tables = []
 const modalDialog = $(".dialog-modal")
 const save = $(".save")
 const update = $(".update")
@@ -102,12 +102,7 @@ save.on('click', () => {
         whenComplete: res => {
             tables.ajax.reload()
             clear()
-            Swal.fire({
-                title: res.message,
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            success(res.message)
             // modalDialog.modal('toggle')
         }
     }) : false
@@ -121,12 +116,7 @@ update.on('click', () => {
         whenComplete: res => {
             tables.ajax.reload()
             clear()
-            Swal.fire({
-                title: res.message,
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            success(res.message)
             modalDialog.modal('toggle')
         }
     }) : false
@@ -145,22 +135,12 @@ const remove = (id) => {
             method: "DELETE",
             url: `leaves/${id}`,
             whenComplete: res => {
-                tables.ajax.reload();
-                Swal.fire({
-                    title: res.message,
-                    icon: "success",
-                    showConfirmButton: false,
-                    timer: 1000
-                })
+                tables.ajax.reload()
+                success(res.message)
             }
         }) : param.dismiss === Swal.DismissReason.cancel &&
-        Swal.fire({
-            title: "The record is safty!",
-            icon: "warning",
-            showConfirmButton: false,
-            timer: 1000
-        });
-    }).catch((err) => console.log(err.message));
+        warning("The record is safty!")
+    }).catch((err) => console.log(err.message))
 }
 
 const clear = () => {
@@ -180,24 +160,14 @@ const color = () => {
 const check = () => {
     let isValid = true
     if (fullName.val() === "") {
-        Swal.fire({
-            title: 'Input the fullname',
-            icon: "warning",
-            showConfirmButton: false,
-            timer: 1000
-        })
+        warning('Input the full name')
         fullName.css("border-color", "red")
         fullName.focus()
         isValid = false
     } else {
         fullName.css("border-color", "#cccccc")
         if (duration.val() === "") {
-            Swal.fire({
-                title: 'Input the duration',
-                icon: "warning",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            warning('Input the duration')
             duration.css("border-color", "red")
             duration.focus()
             isValid = false

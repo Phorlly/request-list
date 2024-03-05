@@ -59,8 +59,28 @@ const formatGender = (gender) => {
                 <i class="${item.icon}"></i> ${item.name}
             </span>`;
 }
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1500
+})
 
-const crud = ({ url, method, dataForm, whenComplete = (res) => { } })=> {
+const success = (message) => {
+    Toast.fire({
+        title: message,
+        icon: "success",
+    })
+}
+
+const warning = (message) => {
+    Toast.fire({
+        title: message,
+        icon: "warning",
+    })
+}
+
+const crud = ({ url, method, dataForm, whenComplete = (res) => { } }) => {
     $.ajax({
         url: `/api/${url}`,
         method: method,

@@ -127,13 +127,7 @@ save.on('click', () => {
         whenComplete: res => {
             tables.ajax.reload()
             clear()
-            Swal.fire({
-                title: res.message,
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1000
-            })
-
+            success(res.message)
             modalDialog.modal('toggle')
         }
     }) : false
@@ -158,36 +152,21 @@ const check = () => {
     let isValid = true
 
     if (leave.val() === "-1") {
-        Swal.fire({
-            title: 'Select the leave',
-            icon: "warning",
-            showConfirmButton: false,
-            timer: 1000
-        })
+        warning('Select the leave')
         leave.css("border-color", "red")
         leave.focus()
         isValid = false
     } else {
         leave.css("border-color", "#cccccc")
         if (started.val() === "") {
-            Swal.fire({
-                title: 'Select the from-date',
-                icon: "warning",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            warning('Select the from-date')
             started.css("border-color", "red")
             started.focus()
             isValid = false
         } else {
             started.css("border-color", "#cccccc")
             if (ended.val() === "") {
-                Swal.fire({
-                    title: 'Select the to-date',
-                    icon: "warning",
-                    showConfirmButton: false,
-                    timer: 1000
-                })
+                warning('Select the to-date')
                 ended.css("border-color", "red")
                 isValid = false
             } else {

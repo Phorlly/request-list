@@ -121,12 +121,7 @@ save.on('click', () => {
         whenComplete: (res) => {
             tables.ajax.reload()
             clear()
-            Swal.fire({
-                title: res.message,
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            success(res.message)
             // modalDialog.modal('toggle')
         }
     }) : false
@@ -140,12 +135,7 @@ update.on('click', () => {
         whenComplete: (res) => {
             tables.ajax.reload()
             clear()
-            Swal.fire({
-                title: res.message,
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            success(res.message)
             modalDialog.modal('toggle')
         }
     }) : false
@@ -165,20 +155,10 @@ const remove = (id) => {
             method: "DELETE",
             whenComplete: (res) => {
                 tables.ajax.reload()
-                Swal.fire({
-                    title: res.message,
-                    icon: "success",
-                    showConfirmButton: false,
-                    timer: 1000
-                })
+                success(res.message)
             }
-        }) : param.dismiss === Swal.DismissReason.cancel &&
-        Swal.fire({
-            title: "The record is safty!",
-            icon: "warning",
-            showConfirmButton: false,
-            timer: 1000
-        })
+        }) : param.dismiss === Toast.DismissReason.cancel &&
+        warning("The record is safty!")
     }).catch((err) => console.log(err.message))
 }
 
@@ -205,47 +185,27 @@ const color = () => {
 const check = () => {
     let isValid = true
     if (fullName.val() === "") {
-        Swal.fire({
-            title: 'Input your fullname',
-            icon: "warning",
-            showConfirmButton: false,
-            timer: 1000
-        })
+        warning('Input your full name')
         fullName.css("border-color", "red")
         fullName.focus()
         isValid = false
     } else {
         fullName.css("border-color", "#cccccc")
         if (email.val() === "") {
-            Swal.fire({
-                title: 'Input your email address',
-                icon: "warning",
-                showConfirmButton: false,
-                timer: 1000
-            })
+            warning('Input your email address')
             email.css("border-color", "red")
             email.focus()
             isValid = false
         } else {
             email.css("border-color", "#cccccc")
             if (role.val() === "-1") {
-                Swal.fire({
-                    title: 'Select your role',
-                    icon: "warning",
-                    showConfirmButton: false,
-                    timer: 1000
-                })
+                warning('Select your role')
                 role.css("border-color", "red")
                 isValid = false
             } else {
                 role.css("border-color", "#cccccc")
                 if (password.val() === "-1") {
-                    Swal.fire({
-                        title: 'Input your password',
-                        icon: "warning",
-                        showConfirmButton: false,
-                        timer: 1000
-                    })
+                    warning('Input your password')
                     password.css("border-color", "red")
                     password.focus()
                     isValid = false
